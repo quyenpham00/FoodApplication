@@ -18,9 +18,16 @@ namespace FoodApplication.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
-            var discount = await _orderService.Discount(user.Id);
-            ViewBag.discount = discount;
-            return View();
+            if (user != null)
+            {
+                var discount = await _orderService.Discount(user.Id);
+                ViewBag.discount = discount;
+                return View();
+            }
+            else
+            {
+                return Redirect("/Identity/Account/login");
+            }
         }
 
         public async Task<IActionResult> OrderHistory()
