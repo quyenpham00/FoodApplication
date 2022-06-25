@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using FoodApplication.Areas.Identity.Data
+@using FoodApplication.Areas.Identity.Pages.Account
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,8 +14,107 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
 </head>
 <body>
+    <header>
+        <div class="container-fluid">
+            <nav class="mobile-nav">
+                <div class="row">
+                    <div class="col-3">
+                        <a href="#"><p>Tasty</p></a>
+                    </div>
+                    <div class="col-2 menu-icon">
+                        <i class="fas fa-align-justify"></i>
+                    </div>
+                </div>
+
+
+                <div class="overlay">
+                    <div class="overlay-content">
+                        <div class="row mobile-login">
+                            <div class="col-4">
+                                <i class="far fa-user-circle"></i>
+                            </div>
+                            <div class="col-8">
+                                <p><a href="#">Sign in</a> / <a href="#">Sign up</a></p>
+                            </div>
+                        </div>
+                        <ul class="menu">
+                            <li class="home-menu"><a href="/Home/index">Home</a></li>
+                            <li class="about-menu"><a href="#">About</a></li>
+                            <li class="dishes-menu">
+                                <a href="/home/menu">Menu</a>
+                            </li>
+                            <li class="contact-menu"><a href="#">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <nav class="desktop-nav">
+                <div class="row">
+                    <div class="col-md-2">
+                        <a href="#"><p>Tasty</p></a>
+                    </div>
+                    <div class="col-md-10 menu-group">
+                        <ul class="menu">
+                            <li class="home-menu"><a href="/Home/index">Home</a></li>
+                            <li class="about-menu"><a href="#">About</a></li>
+                            <li class="menu-has-children services-menu">
+                                <a href="#">Services</a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">Excellent food</a></li>
+                                    <li><a href="#">Fast food</a></li>
+                                    <li><a href="#">Delivery</a></li>
+                                </ul>
+                            </li>
+                            <li class="dishes-menu">
+                                <a href="/home/menu">Menu</a>
+                            </li>
+                            <li class="contact-menu"><a href="#">Contact us</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="ranking">Ranking</a>
+                            </li>
+                            <li>
+                                <a href="/cart">
+                                    <i class="fas fa-shopping-cart">
+                                        <span id="cartNumber" style="font-size: .5em;" class="position-absolute p-1 top-10 start-10 translate-middle badge rounded-pill bg-danger">
+
+                                        </span>
+                                    </i>
+                                </a>
+                            </li>
+                            @if (!SignInManager.IsSignedIn(User))
+                            {
+                                <a href="/Identity/Account/login"> Log In <i class="fas fa-user"></i></a>
+                                <a href="/Identity/Account/Register"> Register </a>
+                            }
+                            else
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="useroption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        @User.Identity?.Name!
+                                    </a>
+                                    <div style="margin-left: 50px; top: 42px;" id="options" class="dropdown-menu dropdown-menu-right">
+                                         <a class="dropdown-item" href="/Identity/Account/manage">Profile</a>
+                                        <a class="dropdown-item" href="/Order/orderhistory">Order History</a>
+                                           <a class="dropdown-item" href="/Report">Sales Report</a>
+                                        <a class="dropdown-item" href="/Products/">Product Manage</a>
+                                        <a id="logoutbtn" class="dropdown-item">Logout</a>
+                                    </div>
+                                </li>
+                                <form hidden class="form-inline hide" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                    <button type="submit" id="logout" class="nav-link btn btn-link text-dark">Logout</button>
+                                </form>
+                            }
+
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
 
     <main role="main" class="pb-3">
         @RenderBody()
@@ -57,11 +162,35 @@
             </div>
         </div>
     </footer>
+    <aside>
+        <div class="scrollToTop">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </aside>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <script src="script.js"></script>
+    <script src="~/js/cart.js"></script>
+    <script src="~/js/order.js"></script>
+    <script>
+        var cart = new Cart([]);
+        var order = new Order();
+        let cartCache = localStorage.getItem("cart");
+        if (cartCache !== null) {
+            cart.products = JSON.parse(cartCache);
+        }
+        cart.update();
+    </script>
+    <script>
+        $("#useroption").on("click", function() {
+            $("#options").addClass("show");
+        });
+        $("#logoutbtn").on("click", function() {
+            $("#logout").click();
+        })</script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

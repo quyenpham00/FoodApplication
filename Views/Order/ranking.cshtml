@@ -1,0 +1,43 @@
+﻿@model IEnumerable<FoodApplication.Models.RankingResponse>
+@{
+    ViewData["Title"] = "Ranking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Dictionary<Rank, string> listBages = new Dictionary<Rank, string>
+    {
+      {Rank.Broze,"bg-success" },
+      {Rank.Silver,"bg-primary" },
+      {Rank.Gold,"bg-warning" },
+    };
+}
+
+<div class="container" style="margin-top: 100px">
+    <div class="w-75 mx-auto p-4 radius-background">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Ranking</h3>
+                <div class="divider"></div>
+                <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                        <thead class="border-bottom">
+                            <tr class="text-xs font-monospace text-muted fw-500">
+                                <th class="text-start" scope="col">Email</th>
+                                <th class="text-start" scope="col">Spent Money</th>
+                                <th class="text-start" scope="col">Rank</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in @Model)
+                            {
+                                <tr>
+                                    <td>@item.UserName</td>
+                                    <td>$@item.SpentMoney</td>
+                                    <td><span class="badge @listBages[item.Rank]">@item.Rank</span></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

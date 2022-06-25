@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "My Order";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <script src="./assets/libs/fontawsome/fontawesome-free/js/all.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/css.css" />
+</head>
+<div class="container p-4 ">
+    <h5 class="cart_headline text-success font-weight-bold">Đơn hàng của tôi</h5>
+    <div class="d-flex my-2 ">
+        <input id="searchproduct" type="search" class="form-control form-rounded" placeholder="Tìm kiếm đơn hàng bằng số điện thoại" aria-label="Search" aria-describedby="search-addon" />
+        <button onclick="getorderbyPhone()" class="btn btn-primary" id="search-addon">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">Lịch sử đơn hàng</div>
+        <div class="card-body p-0">
+            <!-- Billing history table-->
+            <div class="table-responsive table-billing-history">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th class="border-gray-200" id="order_ID" scope="col">Order ID</th>
+                            <th class="border-gray-200" id="createDate" scope="col">Ngày</th>
+                            <th class="border-gray-200" id="price" scope="col">Số lượng</th>
+                            <th class="border-gray-200" id="price" scope="col">Giá Tiền</th>
+                            <th class="border-gray-200" id="status" scope="col">Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myorder">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

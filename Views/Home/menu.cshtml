@@ -1,0 +1,31 @@
+﻿@model IEnumerable<FoodApplication.Models.Product>
+@{
+    ViewData["Title"] = "Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="dishes" data-sr-id="5" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: opacity 2s cubic-bezier(0.5, 0, 0, 1) 0s, transform 2s cubic-bezier(0.5, 0, 0, 1) 0s;">
+    <div class="container">
+        <h2>Menu</h2>
+        <div class="row menu-card-group">
+            @foreach (var product in Model)
+            {
+                <div class="col-md-4 col-6">
+                    <div class="menu-card">
+                        <a href="/Products/Product?id=@product.ProductId"><img src="..@product.ImageUrl" alt="plate" loading="lazy"></a>
+                        <div class="menu-content">
+                            <div class="menu-content-title">
+                                <a href="/Products/Product?id=@product.ProductId"><h3>@product.Name</h3></a>
+                            </div>
+                            <p class="product-description" >@product.Description</p>
+                            <p class="price">$@product.Price</p>
+                        </div>
+                        <div class="menu-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

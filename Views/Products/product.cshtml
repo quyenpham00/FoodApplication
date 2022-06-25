@@ -1,0 +1,55 @@
+﻿@model FoodApplication.Models.Product
+
+@{
+    ViewData["Title"] = "Product Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="">
+    <div class="container">
+        <div class="row radius-background p-5 mx-md-5">
+            <div class="col-md-6">
+                <div class="w-75 mx-auto">
+                    <img src="..@Model.ImageUrl"
+                         alt="about-image"
+                         loading="lazy" />
+                </div>
+                <h2 class="text-center"> $@Model.Price</h2>
+            </div>
+            <div class="col-md-6 grey-background p-4">
+                <div class="divider"></div>
+                <h3 class="fs-3"> @Model.Name</h3>
+                <p>
+                    @Model.Description
+                </p>
+                <form action="" method="post">
+                    <hr />
+                    <label for="quantity"
+                           class="label-quantity fw-bold mb-3 fs-6 text-success">Quantity</label>
+                    <input type="number"
+                           min="1"
+                           class="form-control w-25"
+                           id="quantity"
+                           value="1" />
+                    <hr />
+                    <label for="notes"
+                           class="label-quantity fw-bold mb-3 fs-6 text-success">Notes</label>
+                    <textarea name="notes"
+                              id="notes"
+                              rows="3"
+                              class="d-block w-100"></textarea>
+                    <hr />
+                </form>
+                  <button onclick="cart.addProduct(product)" class="btn btn-success fs-5 w-100">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script>
+        let product = @Html.Raw(Json.Serialize(Model));
+    </script>
+}
+

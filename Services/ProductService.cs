@@ -25,7 +25,7 @@ namespace FoodApplication.Services
             return listProducts;
         }
 
-        public async Task<Product> GetDetailsById(int? id)
+        public async Task<Product> GetDetailsById(Guid? id)
         {
             var Product = new Product();
             if (_context.Product != null)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FoodApplication.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FoodApplication.Areas.Identity.Data;
 

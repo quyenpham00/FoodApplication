@@ -1,6 +1,8 @@
 using FoodApplication.Areas.Identity.Data;
 using FoodApplication.Data;
+using FoodApplication.Interface;
 using FoodApplication.Interfaces;
+using FoodApplication.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,8 +15,7 @@ builder.Services.AddDbContext<AuthContext>(options =>
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
      .AddDefaultUI()
      .AddEntityFrameworkStores<AuthContext>()
-     .AddDefaultTokenProviders()
-     .AddEntityFrameworkStores<AuthContext>();
+     .AddDefaultTokenProviders();
 
 builder.Services.AddAuthorization(options =>
 {
@@ -27,6 +28,10 @@ builder.Services.AddAuthorization(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IReportService, ReportService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

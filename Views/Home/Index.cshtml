@@ -1,122 +1,4 @@
-﻿@using FoodApplication.Areas.Identity.Data
-@using FoodApplication.Areas.Identity.Pages.Account
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-@model LoginModel
-<aside>
-    <div class="scrollToTop">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-</aside>
-<header>
-    <div class="container-fluid">
-        <nav class="mobile-nav">
-            <div class="row">
-                <div class="col-3">
-                    <a href="#"><p>Tasty</p></a>
-                </div>
-                <div class="col-7 search">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search....">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-                <div class="col-2 menu-icon">
-                    <i class="fas fa-align-justify"></i>
-                </div>
-            </div>
-
-
-            <div class="overlay">
-                <div class="overlay-content">
-                    <div class="row mobile-login">
-                        <div class="col-4">
-                            <i class="far fa-user-circle"></i>
-                        </div>
-                        <div class="col-8">
-                            <p><a href="#">Sign in</a> / <a href="#">Sign up</a></p>
-                        </div>
-                    </div>
-                    <ul class="menu">
-                        <li class="home-menu"><a href="#">Home</a></li>
-                        <li class="about-menu"><a href="#">About</a></li>
-                        <li class="menu-has-children services-menu">
-                            <a href="#">Services</a>
-                            <ul class="sub-menu-mobile">
-                                <li><a href="#">Excellent food</a></li>
-                                <li><a href="#">Fast food</a></li>
-                                <li><a href="#">Delivery</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-has-children dishes-menu">
-                            <a href="#">Menu</a>
-                            <ul class="sub-menu-mobile">
-                                <li><a href="#">Pizza</a></li>
-                                <li><a href="#">Salad</a></li>
-                                <li><a href="#">Best seller</a></li>
-                            </ul>
-                        </li>
-                        <li class="contact-menu"><a href="#">Contact us</a></li>
-                    </ul>
-                </div>
-            </div>
-
-        </nav>
-        <nav class="desktop-nav">
-            <div class="row">
-                <div class="col-md-2">
-                    <a href="#"><p>Tasty</p></a>
-                </div>
-                <div class="col-md-10 menu-group">
-                    <ul class="menu">
-                        <li class="home-menu"><a href="#">Home</a></li>
-                        <li class="about-menu"><a href="#">About</a></li>
-                        <li class="menu-has-children services-menu">
-                            <a href="#">Services</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">Excellent food</a></li>
-                                <li><a href="#">Fast food</a></li>
-                                <li><a href="#">Delivery</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-has-children dishes-menu">
-                            <a href="#">Menu</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">Pizza</a></li>
-                                <li><a href="#">Salad</a></li>
-                                <li><a href="#">Best seller</a></li>
-                            </ul>
-                        </li>
-                        <li class="contact-menu"><a href="#">Contact us</a></li>
-                      <li class="nav-item">  
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Index">Role</a>  
-                        </li>  
-                        <li>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Search....">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
-                            </div>
-                        </li>
-
-                        <li><i class="fas fa-shopping-cart"></i></li>
-                        @if (!SignInManager.IsSignedIn(User))
-                        {
-                            <a href="/Identity/Account/login"> Log In <i class="fas fa-user"></i></a>
-                            <a href="/Identity/Account/Register"> Register </a>
-                        }
-                        else
-                        {
-                            <span title="Manage Your Account"> <a href="/Identity/Account/Manage">Hello @User.Identity?.Name! </a></span>
-                            <a href="/Identity/Account/Logout"> Log Out </a>
-                        }
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
-
+﻿
 <section class="home">
     <div class="container">
         <div class="row ">
@@ -124,11 +6,11 @@
                 <div class="content">
                     <h1>Tasty Food</h1>
                     <h2>Try the best food of the week</h2>
-                    <button type="button" class="btn btn-success">View Menu</button>
+                    <a href="/home/menu" type="button" class="btn btn-success">View Menu</a>
                 </div>
             </div>
             <div class="col-md-6">
-                <img src="images/home.png" alt="home-page" loading="lazy">
+                <img src="~/images/home.png" alt="home-page" loading="lazy">
             </div>
         </div>
     </div>
@@ -139,7 +21,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="about-image desktop">
-                    <img src="images/about.jpg" alt="about-image" loading="lazy">
+                    <img src="~/images/about.jpg" alt="about-image" loading="lazy">
                 </div>
             </div>
             <div class="col-md-6">
@@ -153,7 +35,7 @@
 
             <div class="col-md-6">
                 <div class="about-image mobile">
-                    <img src="images/about.jpg" alt="about-image" loading="lazy">
+                    <img src="~/images/about.jpg" alt="about-image" loading="lazy">
                 </div>
             </div>
         </div>
@@ -452,7 +334,7 @@
         <div class="row menu-card-group">
             <div class="col-md-4 col-6">
                 <div class="menu-card">
-                    <a href="#"><img src="images/plate1.png" alt="plate" loading="lazy"></a>
+                    <a href="#"><img src="~/images/plate1.png" alt="plate" loading="lazy"></a>
                     <div class="menu-content">
                         <div class="menu-content-title">
                             <a href="#"><h3>Barbecue salad</h3></a>
@@ -467,7 +349,7 @@
             </div>
             <div class="col-md-4 col-6">
                 <div class="menu-card">
-                    <a href="#"><img src="images/plate2.png" alt="plate" loading="lazy"></a>
+                    <a href="#"><img src="~/images/plate2.png" alt="plate" loading="lazy"></a>
                     <div class="menu-content">
                         <div class="menu-content-title">
                             <a href="#"><h3>Salad with fish</h3></a>
@@ -482,7 +364,7 @@
             </div>
             <div class="col-md-4 col-6">
                 <div class="menu-card">
-                    <a href="#"><img src="images/plate3.png" alt="plate" loading="lazy"></a>
+                    <a href="#"><img src="~/images/plate3.png" alt="plate" loading="lazy"></a>
                     <div class="menu-content">
                         <div class="menu-content-title">
                             <a href="#"><h3>Spinach salad</h3></a>
@@ -503,7 +385,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 desktop">
-                <img class="phone" src="images/mobile-app.png" alt="mobile-app" loading="lazy">
+                <img class="phone" src="~/images/mobile-app.png" alt="mobile-app" loading="lazy">
             </div>
             <div class="col-md-7">
                 <div class="content">
@@ -511,19 +393,20 @@
                     <h2>App is avilable</h2>
                     <p>Find our application and download it, you can make reservations, food orders, see your deliceries on the way and much more.</p>
                     <div class="row">
-                        <a href="#" class="col-md-6 col-6"><img src="images/app1.png" alt="app" loading="lazy"></a>
-                        <a href="#" class="col-md-6 col-6"><img src="images/app2.png" alt="app" loading="lazy"></a>
+                        <a href="#" class="col-md-6 col-6"><img src="~/images/app1.png" alt="app" loading="lazy"></a>
+                        <a href="#" class="col-md-6 col-6"><img src="~/images/app2.png" alt="app" loading="lazy"></a>
                     </div>
                 </div>
             </div>
             <div class="col-md-5 mobile">
-                <img class="phone" src="images/mobile-app.png" alt="mobile-app" loading="lazy">
+                <img class="phone" src="~/images/mobile-app.png" alt="mobile-app" loading="lazy">
             </div>
 
         </div>
     </div>
 </section>
 
+@model double
 <section class="contact">
     <div class="container">
         <div class="row">
