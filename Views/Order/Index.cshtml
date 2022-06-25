@@ -4,6 +4,11 @@
             <div class="col-md-6">
                 <h3>Customer Information</h3>
                 <div class="divider"></div>
+                <div id="validateMessageContainer" style="display:none" class="card bg-danger text-white shadow">
+                    <div class="card-body">
+                        <div id="validateMessage" class="text-white-50 small">#e74a3b</div>
+                    </div>
+                </div>
                 <div class="mb-3">
                     <label for="customerName" class="form-label">Name <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="customerName" required />
@@ -13,7 +18,7 @@
                     <input type="text"
                            class="form-control"
                            id="phoneNumber"
-                           required></input>
+                           required>
                 </div>
                 <div class="mb-3">
                     <label for="address" class="form-label"></label>
@@ -21,7 +26,7 @@
                     <input type="text"
                            class="form-control"
                            id="address"
-                           required></input>
+                           required>
                 </div>
                 <div class="mb-3">
                     <label for="orderNote" class="form-label">Notes</label>
@@ -65,10 +70,10 @@
     </div>
 </div>
 @section Scripts {
-    <script>
-        let discount = $("#discount").attr("value");
-        order.renderOrder(cart.products);
-        $("#subtotal").text("$"+order.calculate(cart.products));
-        $("#total").text("$"+ (order.calculate(cart.products) - order.calculate(cart.products) * discount/100));
-    </script>
+<script>
+    let discount = $("#discount").attr("value");
+    order.renderOrder(cart.products);
+    $("#subtotal").text("$"+order.calculate(cart.products));
+    $("#total").text("$"+ (order.calculate(cart.products) - order.calculate(cart.products) * discount/100));
+</script>
 }
